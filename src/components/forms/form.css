@@ -1,0 +1,9 @@
+.formClass{
+    margin: 10px;
+    padding: 10px;
+    border: solid 2px rgb(170, 144, 144);
+    border-radius: 5px;
+}
+h2{
+    text-align: center;
+}

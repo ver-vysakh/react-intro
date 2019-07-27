@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { saveToStore } from '../../actions/index';
+
 class SignUp extends Component {
     constructor(props, context) {
         super(props, context);
@@ -35,9 +40,12 @@ class SignUp extends Component {
     }
 
     getUserdetails() {
+        let user = { ...this.state };
         this.setState({ show: false });
         this.props.saveUser(this.state);
         this.handleClose();
+        this.props.saveToStore(user);
+        console.log('getUserdetails: ', this.props);
 
     }
     handleChange(event) {
@@ -92,9 +100,16 @@ class SignUp extends Component {
                             <Button variant="secondary" type="button" onClick={this.handleClose}>
                                 Close
                         </Button>
+                            {/* Save the user without using the redux store
+                            <Button variant="primary" type="button" onClick={this.getUserdetails}>
+                                Sign Up
+                        </Button> */}
+
+                            {/* Save the user by using the redux store concept */}
                             <Button variant="primary" type="button" onClick={this.getUserdetails}>
                                 Sign Up
                         </Button>
+
                         </Modal.Footer>
                     </Form>;
                 </Modal>
@@ -103,5 +118,16 @@ class SignUp extends Component {
     }
 }
 
-//   render(<SignUp />);
-export default SignUp;
+function mapStateToProps(state) {
+    return {
+        storedUsers: state.ListOfAllUsers
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ saveToStore: saveToStore }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+
+// export default SignUp;

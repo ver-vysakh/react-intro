@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import '../table/table.css';
 import SignUp from '../sigan-up/sign-up';
+import { connect } from 'react-redux';
 
 class Grid extends Component {
     constructor(props) {
@@ -64,7 +65,7 @@ class Grid extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.users.map((listValue, index) => {
+                        {this.props.listUsers.map((listValue, index) => {
                             return (
                                 <tr key={index} onClick={(event) => this.editRow(listValue, index)}>
                                     <td>{index + 1}</td>
@@ -80,4 +81,11 @@ class Grid extends Component {
         )
     }
 }
-export default Grid;
+
+function mapStateToProps(state){
+    return {
+        listUsers: state.ListOfAllUsers
+    }
+}
+export default connect(mapStateToProps)(Grid);
+// export default Grid;

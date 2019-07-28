@@ -7,8 +7,8 @@ import { bindActionCreators } from 'redux';
 import { saveToStore } from '../../actions/index';
 
 class SignUp extends Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
 
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -120,7 +120,7 @@ class SignUp extends Component {
 
 function mapStateToProps(state) {
     return {
-        storedUsers: state.ListOfAllUsers
+        toEdit: state.users.toEdit,
     };
 }
 

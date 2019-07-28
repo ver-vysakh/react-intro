@@ -7,6 +7,7 @@ export default function (state = [], action) {
             ];
             console.log('newState', newState);
             return newState;
+
+        default: return state;
     }
-    return state;
 }

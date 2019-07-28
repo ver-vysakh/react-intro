@@ -32,6 +32,7 @@ class Grid extends Component {
         var result = Object.keys(usersCopy).map((key) => {
             return usersCopy[key];
         });
+
         this.setState({ users: result });
     }
 
@@ -42,7 +43,7 @@ class Grid extends Component {
         });
     }
     render() {
-        if (!this.state.users || this.state.users.length == 0) {
+        if (!this.props.listUsers || this.props.listUsers.length === 0) {
             return (
                 <Container>
                     <SignUp ref={this.childRef} getUser={this.state.userToEdit} saveUser={this.saveUser}></SignUp>
@@ -84,7 +85,7 @@ class Grid extends Component {
 
 function mapStateToProps(state){
     return {
-        listUsers: state.ListOfAllUsers
+        listUsers: state.users
     }
 }
 export default connect(mapStateToProps)(Grid);

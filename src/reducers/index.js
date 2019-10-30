@@ -6,7 +6,7 @@ import editReducer from './reducer_edit_user';
 
 const rootReducer = combineReducers({
     ListOfAllUsers: SaveReducer,
-    ListOfAllUsers: editReducer
+    // ListOfAllUsers: editReducer
 });
 
 export default rootReducer;
